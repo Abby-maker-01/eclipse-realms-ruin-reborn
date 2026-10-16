@@ -1,0 +1,17 @@
+{
+  "name": "eclipse-realms-of-ruin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ECLIPSE: REALMS OF RUIN - 2D RPG prototype with optional WebSocket multiplayer",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0"
+  }
+}

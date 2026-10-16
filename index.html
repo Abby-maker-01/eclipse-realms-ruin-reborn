@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#11101c"><title>ECLIPSE: REALMS OF RUIN</title>
+<style>
+:root{--bg:#11101c;--panel:#1b1930;--line:#51466f;--purple:#b39aff;--cyan:#71e5ff;--gold:#ffd36a;--red:#ff6686;--text:#f6f1ff;--muted:#b8b0cf}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:monospace;touch-action:none}button,input,select{font:inherit}button{background:#30264d;color:#fff;border:1px solid #75649d;border-radius:7px;padding:8px 10px;cursor:pointer}button:active{transform:scale(.97)}button.active{background:#6947a9;border-color:#d6c6ff}.app{height:100dvh;display:flex;flex-direction:column;max-width:1200px;margin:auto}.top{padding:8px 10px;background:#171426;border-bottom:1px solid #43385e;display:flex;align-items:center;justify-content:space-between;gap:8px;z-index:3}.brand{font-weight:bold;color:#e2d5ff;font-size:clamp(13px,2.5vw,20px);letter-spacing:1px}.online{font-size:10px;color:var(--muted);margin-top:3px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f87171;margin-right:5px}.dot.on{background:#4ade80}.topright{display:flex;gap:6px;align-items:center}.tiny{font-size:10px;color:var(--muted)}.bars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:6px 9px;background:#141321;z-index:2}.meter{font-size:10px;color:var(--muted)}.meter b{float:right;color:white}.bar{height:6px;background:#3a344d;border-radius:9px;overflow:hidden;margin-top:3px}.bar span{display:block;height:100%;background:linear-gradient(90deg,#ef476f,#ff8ca4)}.bar.mp span{background:linear-gradient(90deg,#0284c7,#67e8f9)}.bar.xp span{background:linear-gradient(90deg,#7c3aed,#c4b5fd)}.stage{position:relative;flex:1;min-height:0;background:#11101c;overflow:hidden}.stage canvas{width:100%;height:100%;display:block;image-rendering:pixelated}.hudtop{position:absolute;top:8px;left:8px;display:flex;gap:5px;flex-wrap:wrap;pointer-events:none}.chip{font-size:10px;padding:5px 7px;border:1px solid #5a4b7b;border-radius:5px;background:#171426dd;color:#e6dcff}.hint{position:absolute;top:8px;right:8px;max-width:42%;font-size:10px;color:#e7ddff;background:#171426d9;border:1px solid #51466f;border-radius:6px;padding:6px}.touch{position:absolute;bottom:12px;left:12px;right:12px;display:flex;align-items:end;justify-content:space-between;pointer-events:none}.dpad,.actpad{display:flex;gap:7px;align-items:end;pointer-events:auto}.control{width:48px;height:48px;background:#241d3bcc;border:1px solid #9582c2;border-radius:12px;font-size:18px;user-select:none;touch-action:none}.control.big{width:58px;height:58px;border-radius:50%;background:#4b286bcc}.control.jump{background:#214b63cc}.control small{display:block;font-size:8px}.panelbar{display:flex;gap:5px;padding:6px;background:#171426;border-top:1px solid #43385e;overflow-x:auto;z-index:4}.panelbar button{white-space:nowrap;font-size:11px;padding:8px}.drawer{position:absolute;z-index:5;inset:7% 4% 9%;background:#171426f7;border:1px solid #75649d;border-radius:12px;padding:12px;overflow:auto;box-shadow:0 10px 40px #0009}.drawer h2{font-size:16px;color:#d8c8ff;margin:0 0 10px}.drawerhead{display:flex;justify-content:space-between;align-items:center;position:sticky;top:-12px;background:#171426;padding:4px 0 10px;z-index:1}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}.card{border:1px solid #453a60;background:#211d35;border-radius:8px;padding:9px;font-size:11px}.card strong{display:block;color:#f0eaff;margin:5px 0}.card p{color:var(--muted);line-height:1.5}.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:7px 0}.muted{color:var(--muted);font-size:11px}.field{width:100%;padding:9px;background:#100f1b;color:#fff;border:1px solid #574a75;border-radius:6px;margin:4px 0 8px}.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.log{max-height:120px;overflow:auto;background:#0d0c15;padding:8px;border:1px solid #38304d;border-radius:7px;font-size:10px;line-height:1.6}.toast{position:absolute;z-index:8;bottom:82px;left:50%;transform:translateX(-50%);background:#171426ed;border:1px solid #8e79bc;border-radius:8px;padding:8px 12px;font-size:11px;max-width:90%;text-align:center;display:none}.chatrow{display:flex;gap:5px}.chatrow input{flex:1;min-width:0}.hidden{display:none!important}.rarity-common{color:#ddd}.rarity-rare{color:#67e8f9}.rarity-epic{color:#c4b5fd}.rarity-legendary{color:#ffd36a}.danger{background:#72283e}.good{background:#17513e}.footnote{font-size:10px;color:#9289aa;margin-top:8px}@media(min-width:800px){.control{width:56px;height:56px}.control.big{width:66px;height:66px}.drawer{inset:5% 18% 8%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div><div class="brand">☾ ECLIPSE: REALMS OF RUIN</div><div class="online"><span id="netDot" class="dot"></span><span id="netText">Offline mode · set server to play online</span></div></div><div class="topright"><span id="zoneLabel" class="tiny">ASHEN MEADOW</span><button id="menuBtn">☰</button></div></header>
+<section class="bars">
+<div class="meter">HP <b id="hpTxt">100/100</b><div class="bar"><span id="hpBar" style="width:100%"></span></div></div>
+<div class="meter">MP <b id="mpTxt">40/40</b><div class="bar mp"><span id="mpBar" style="width:100%"></span></div></div>
+<div class="meter">LV <b id="xpTxt">1 · 0/40 EXP</b><div class="bar xp"><span id="xpBar" style="width:0%"></span></div></div>
+</section>
+<main class="stage"><canvas id="game" width="960" height="540"></canvas>
+<div class="hudtop"><span class="chip" id="nameChip">Wanderer · Human</span><span class="chip" id="goldChip">◈ 35 G</span><span class="chip" id="playerCount">Players: 1</span></div>
+<div class="hint" id="hint">Gerak 4 arah • jelajahi dunia • dekati NPC</div>
+<div class="touch"><div class="dpad"><div style="display:flex;flex-direction:column;gap:5px;align-items:center"><button class="control" data-key="up">▲<small>ATAS</small></button><div style="display:flex;gap:5px"><button class="control" data-key="left">◀<small>KIRI</small></button><button class="control" data-key="down">▼<small>BAWAH</small></button><button class="control" data-key="right">▶<small>KANAN</small></button></div></div></div><div class="actpad"><button class="control jump" data-action="interact">✋<small>INTERAKSI</small></button><button class="control big" data-action="attack">⚔<small>ATTACK</small></button><button class="control big" data-action="skill">✦<small>SKILL</small></button></div></div>
+<div class="toast" id="toast"></div>
+<div id="drawer" class="drawer hidden"><div class="drawerhead"><h2 id="drawerTitle">MENU</h2><button id="closeDrawer">✕</button></div><div id="drawerBody"></div></div>
+</main>
+<nav class="panelbar"><button data-panel="character">♟ Karakter</button><button data-panel="inventory">🎒 Tas</button><button data-panel="equipment">🛡 Equipment</button><button data-panel="quests">📜 Quest</button><button data-panel="world">🗺 Dunia</button><button data-panel="online">🌐 Online</button></nav>
+</div>
+<script>
+(()=> {
+"use strict";
+const $=id=>document.getElementById(id), canvas=$("game"),ctx=canvas.getContext("2d");
+ctx.imageSmoothingEnabled=false;
+const WORLD_W=5000, GROUND=420, TILE=32;
+const races={
+ Human:{hp:0,mp:0,atk:0,def:0,desc:"Ras serbaguna tanpa kelemahan khusus."},
+ Elf:{hp:-5,mp:15,atk:1,def:0,desc:"Lincah dan memiliki MP lebih besar."},
+ Demon:{hp:10,mp:0,atk:4,def:0,desc:"Serangan kuat dengan darah iblis."},
+ Vampire:{hp:0,mp:8,atk:2,def:1,desc:"Penguasa malam dengan daya tahan tinggi."},
+ Dragonkin:{hp:20,mp:0,atk:3,def:3,desc:"Keturunan naga dengan pertahanan kuat."},
+ Voidborn:{hp:0,mp:20,atk:4,def:0,desc:"Ras misterius yang menyerap energi kehampaan."}
+};
+const classes={
+ Knight:{atk:5,def:4,mp:0,desc:"Garis depan dengan pertahanan kuat."},
+ Assassin:{atk:7,def:0,mp:0,desc:"Cepat, tajam, dan ahli serangan kritis."},
+ Mage:{atk:3,def:0,mp:20,desc:"Menguasai sihir untuk serangan jarak jauh."},
+ Archer:{atk:4,def:1,mp:5,desc:"Serangan jarak jauh yang konsisten."},
+ Healer:{atk:1,def:3,mp:25,desc:"Mendukung party dengan pemulihan."}
+};
+const gear=[
+{id:"woodblade",name:"Wooden Blade",slot:"Weapon",rarity:"common",atk:3,def:0,icon:"🗡",desc:"+3 ATK"},
+{id:"apprentice",name:"Apprentice Robe",slot:"Armor",rarity:"common",atk:0,def:2,icon:"🥋",desc:"+2 DEF"},
+{id:"moonfang",name:"Moonfang",slot:"Weapon",rarity:"epic",atk:12,def:0,icon:"🌙",desc:"+12 ATK"},
+{id:"ironplate",name:"Iron Plate",slot:"Armor",rarity:"rare",atk:0,def:8,icon:"🛡",desc:"+8 DEF"},
+{id:"swiftboots",name:"Swift Boots",slot:"Boots",rarity:"rare",atk:1,def:1,icon:"👢",desc:"+1 ATK, +1 DEF"},
+{id:"voidring",name:"Void Ring",slot:"Accessory",rarity:"legendary",atk:7,def:4,icon:"💍",desc:"+7 ATK, +4 DEF"}
+];
+const enemyTypes=[
+{name:"Slime Liar",kind:"slime",hp:30,atk:5,xp:10,gold:6,color:"#75e5bd",w:25,h:22},
+{name:"Goblin Scout",kind:"goblin",hp:48,atk:8,xp:16,gold:10,color:"#9bd46e",w:25,h:35},
+{name:"Shadow Wolf",kind:"wolf",hp:65,atk:11,xp:22,gold:15,color:"#8d83c8",w:38,h:27},
+{name:"Skeleton Knight",kind:"skeleton",hp:90,atk:14,xp:30,gold:22,color:"#d6d0bd",w:25,h:38},
+{name:"Abyss Brute",kind:"brute",hp:155,atk:19,xp:55,gold:40,color:"#b95770",w:48,h:53}
+];
+const zones=[
+{name:"ASHEN MEADOW",x:0,color:"#344a45",sky:"#171b36",desc:"Padang awal yang diselimuti kabut."},
+{name:"WHISPERING WOODS",x:1000,color:"#254a3b",sky:"#101e2b",desc:"Hutan berbisik, rumah para Shadow Wolf."},
+{name:"FROSTFALL RUINS",x:2050,color:"#40536a",sky:"#182039",desc:"Reruntuhan beku yang dijaga skeleton."},
+{name:"DUSK DESERT",x:3150,color:"#75503d",sky:"#34203c",desc:"Pasir merah dan monster abyss."},
+{name:"ECLIPSE GATE",x:4200,color:"#44305d",sky:"#100d25",desc:"Gerbang menuju wilayah terlarang."}
+];
+const state={
+name:"Wanderer",gender:"Cowok",race:"Human",job:"Knight",level:1,xp:0,hp:100,mp:40,gold:35,
+stats:{str:5,vit:5,agi:5,int:5},points:0,x:130,y:300,vx:0,vy:0,onGround:true,face:1,
+inventory:["woodblade","apprentice","potion","potion"],equipment:{Weapon:"woodblade",Armor:"apprentice",Boots:null,Accessory:null},
+kills:0,questStep:0,zone:0,attackTimer:0,skillTimer:0,damageFlash:0,respawn:0
+};
+let mobs=[],players={},keys={},camera=0,worldCameraY=0,last=0,worldTime=0,ws=null,online=false,playerId=null,remotePlayers={},chatLines=[],lastNet=0,activePanel="";
+const npcList=[{x:370,y:285,name:"Mira",role:"Quest Keeper",color:"#e7a6e9",q:"Kalahkan 3 monster untuk membantu desa."},{x:770,y:365,name:"Rowan",role:"Blacksmith",color:"#e9bd74",q:"Kumpulkan loot untuk memperkuat equipment."},{x:1640,y:255,name:"Elian",role:"Wanderer",color:"#83d6e8",q:"Hutan menyimpan rahasia dan monster langka."},{x:2850,y:345,name:"Nara",role:"Healer",color:"#f4b3c8",q:"Gunakan potion saat HP menipis."}];
+function maxHp(){return 100+(state.level-1)*12+state.stats.vit*5+races[state.race].hp}
+function maxMp(){return 40+(state.level-1)*7+state.stats.int*4+races[state.race].mp+classes[state.job].mp}
+function equipBonus(k){let n=0;for(const id of Object.values(state.equipment)){const g=gear.find(x=>x.id===id);if(g)n+=g[k]||0}return n}
+function atk(){return 7+state.stats.str*2+classes[state.job].atk+races[state.race].atk+equipBonus("atk")}
+function def(){return 2+state.stats.vit+classes[state.job].def+races[state.race].def+equipBonus("def")}
+function expNeed(){return state.level*40}
+function say(msg){$("toast").textContent=msg;$("toast").style.display="block";clearTimeout(say.timer);say.timer=setTimeout(()=>$("toast").style.display="none",2300)}
+function logChat(msg){chatLines.push(msg);if(chatLines.length>12)chatLines.shift()}
+function save(){try{localStorage.setItem("eclipseOnlineSave",JSON.stringify({...state,x:state.x,y:state.y,vx:0,vy:0}))}catch(e){}}
+function load(){try{const s=JSON.parse(localStorage.getItem("eclipseOnlineSave"));if(s)Object.assign(state,s)}catch(e){}state.hp=Math.min(state.hp,maxHp());state.mp=Math.min(state.mp,maxMp())}
+function makeMob(x,index){const t=enemyTypes[index%enemyTypes.length];return {id:"mob"+x+"_"+Math.random().toString(36).slice(2,6),type:t,x,y:180+((Math.floor(x/205)*79)%250),hp:t.hp,maxHp:t.hp,dir:Math.random()<.5?-1:1,aggro:false,hit:0,baseX:x,baseY:180+((Math.floor(x/205)*79)%250),respawn:0}}
+function initMobs(){mobs=[];for(let x=240,i=0;x<WORLD_W-100;x+=205,i++)mobs.push(makeMob(x,(i+Math.floor(x/900))%enemyTypes.length))}
+function drawPixelPerson(x,y,gender,color,face,scale=1,remote=false){ctx.save();ctx.translate(Math.round(x),Math.round(y));ctx.scale(scale,scale);if(face<0)ctx.scale(-1,1);
+ // shadow
+ ctx.fillStyle="#08081288";ctx.fillRect(-12,1,25,4);
+ // legs
+ ctx.fillStyle="#252239";ctx.fillRect(-8,-14,6,14);ctx.fillRect(2,-14,6,14);
+ ctx.fillStyle=gender==="Cewek"?"#a65fbc":"#4367a9";ctx.fillRect(-9,-16,17,5);
+ // body / outfit
+ ctx.fillStyle=color;ctx.fillRect(-10,-31,20,16);ctx.fillStyle="#d8c5ff";ctx.fillRect(-4,-30,8,13);
+ // arms
+ ctx.fillStyle="#eab995";ctx.fillRect(-14,-29,4,12);ctx.fillRect(10,-29,4,12);
+ // head
+ ctx.fillStyle="#e8b995";ctx.fillRect(-8,-44,16,14);
+ ctx.fillStyle=gender==="Cewek"?"#3a203a":"#28233a";ctx.fillRect(-9,-47,18,7);ctx.fillRect(-8,-41,3,6);
+ if(gender==="Cewek"){ctx.fillRect(-10,-35,3,10);ctx.fillRect(7,-35,3,10)}
+ ctx.fillStyle="#201b30";ctx.fillRect(2,-39,2,2);
+ // sword
+ ctx.fillStyle="#d6e7ff";ctx.fillRect(14,-31,3,18);ctx.fillStyle="#e4b65c";ctx.fillRect(12,-24,7,3);
+ if(remote){ctx.fillStyle="#8fe8ff";ctx.fillRect(-15,-53,30,4)}
+ ctx.restore()}
+function drawMob(m){
+ const x=Math.round(m.x-camera),y=Math.round(m.y);
+ if(x<-80||x>canvas.width+80||y<-80||y>canvas.height+80)return;
+ ctx.save();ctx.translate(x,y);
+ ctx.fillStyle="#08081288";ctx.fillRect(-13,11,26,5);
+ if(m.type.kind==="slime"){
+   ctx.fillStyle=m.type.color;ctx.fillRect(-13,-10,26,21);ctx.fillRect(-8,-14,16,7);
+   ctx.fillStyle="#18202d";ctx.fillRect(-6,-3,3,4);ctx.fillRect(4,-3,3,4);
+ }else if(m.type.kind==="wolf"){
+   ctx.fillStyle=m.type.color;ctx.fillRect(-15,-11,30,22);ctx.fillRect(-10,-16,20,8);
+   ctx.fillRect(-13,8,7,7);ctx.fillRect(6,8,7,7);ctx.fillStyle="#ff6b89";ctx.fillRect(-5,-5,3,3);ctx.fillRect(4,-5,3,3);
+ }else{
+   ctx.fillStyle=m.type.color;ctx.fillRect(-13,-12,26,24);ctx.fillStyle="#d9c9a4";ctx.fillRect(-8,-16,16,9);
+   ctx.fillStyle="#29243d";ctx.fillRect(-11,9,7,7);ctx.fillRect(4,9,7,7);ctx.fillStyle="#ff4d7d";ctx.fillRect(-5,-13,3,3);ctx.fillRect(3,-13,3,3);
+ }
+ ctx.restore();
+ if(m.hp<m.maxHp){ctx.fillStyle="#30213c";ctx.fillRect(x-18,y-22,36,4);ctx.fillStyle="#fb7185";ctx.fillRect(x-18,y-22,36*Math.max(0,m.hp/m.maxHp),4)}
+}
+function drawNPC(n){
+ let x=n.x-camera,y=n.y;
+ if(x<-50||x>canvas.width+50)return;
+ drawPixelPerson(x,y,n.name==="Rowan"?"Cowok":"Cewek",n.color,1,.9);
+ ctx.fillStyle="#f3e8ff";ctx.font="10px monospace";ctx.textAlign="center";ctx.fillText(n.name,x,y-28);
+ ctx.fillStyle="#facc15";ctx.fillRect(x-2,y-38,4,4);
+}
+function drawWorld(){
+ const w=canvas.width,h=canvas.height;
+ let zone=zones.filter(z=>state.x>=z.x).pop()||zones[0];
+ state.zone=zones.indexOf(zone);$("zoneLabel").textContent=zone.name;
+ const grad=ctx.createLinearGradient(0,0,0,h);grad.addColorStop(0,zone.sky);grad.addColorStop(1,"#25213a");
+ ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
+ // pixel-art tiled ground
+ const tile=32, offsetX=-(camera%tile), offsetY=-(worldCameraY%tile);
+ for(let y=offsetY;y<h;y+=tile){
+   for(let x=offsetX;x<w;x+=tile){
+     const wx=Math.floor((x+camera)/tile), wy=Math.floor((y+worldCameraY)/tile);
+     const v=(wx*13+wy*7+wx*wy)%11;
+     ctx.fillStyle=v<2?"#30344a":v<5?zone.color:"#354b48";
+     ctx.fillRect(x,y,tile,tile);
+     ctx.fillStyle="#ffffff0b";ctx.fillRect(x+3,y+4,5,3);
+     if(v===4){ctx.fillStyle="#61715f";ctx.fillRect(x+19,y+20,4,4)}
+   }
+ }
+ // distant forest silhouettes
+ for(let i=0;i<Math.ceil(WORLD_W/170);i++){
+   let wx=i*170+70,x=wx-camera,y=95-(worldCameraY*.15);
+   if(x<-70||x>w+70)continue;
+   ctx.fillStyle="#182b31";ctx.fillRect(x-5,y+18,10,34);
+   ctx.fillStyle=state.x>850&&state.x<2050?"#1e4639":"#34314c";
+   ctx.fillRect(x-22,y,44,30);ctx.fillRect(x-15,y-13,30,20);
+ }
+ // decorative ruins / stones in the overworld
+ for(let i=0;i<Math.ceil(WORLD_W/430);i++){
+   let wx=i*430+230,x=wx-camera,y=150+(i%3)*75-worldCameraY;
+   if(x<-80||x>w+80)continue;
+   ctx.fillStyle="#5b526f";ctx.fillRect(x-18,y-20,36,45);
+   ctx.fillStyle="#28243d";ctx.fillRect(x-11,y-12,22,37);
+   ctx.fillStyle="#a99ac7";ctx.fillRect(x-22,y-23,44,5);
+ }
+ // local NPCs, monsters and remote adventurers
+ for(const n of npcList)drawNPC(n);
+ for(const m of mobs)if(!m.dead)drawMob(m);
+ for(const p of Object.values(remotePlayers)){
+   if(!p||!Number.isFinite(p.x))continue;
+   drawPixelPerson(p.x-camera,p.y-worldCameraY,p.gender||"Cowok",p.color||"#68c9dc",p.face||1,.95,true);
+   ctx.fillStyle="#a5f3fc";ctx.font="10px monospace";ctx.textAlign="center";
+   ctx.fillText((p.name||"Traveler").slice(0,12),p.x-camera,p.y-worldCameraY-30);
+ }
+ drawPixelPerson(state.x-camera,state.y-worldCameraY,state.gender,
+   state.job==="Mage"?"#8255bd":state.job==="Assassin"?"#4b526f":state.job==="Healer"?"#c16caa":state.job==="Archer"?"#568f70":"#5272bb",
+   state.face,1);
+ if(state.attackTimer>0){
+   ctx.strokeStyle="#e9d5ff";ctx.lineWidth=4;ctx.beginPath();
+   const px=state.x-camera,py=state.y-worldCameraY;
+   ctx.arc(px+state.face*13,py,23,-.9,.8);ctx.stroke();ctx.lineWidth=1;
+ }
+ let near=npcList.find(n=>Math.hypot(n.x-state.x,n.y-state.y)<65);
+ if(near){ctx.fillStyle="#fff";ctx.font="12px monospace";ctx.textAlign="center";ctx.fillText("INTERAKSI: "+near.name,state.x-camera,state.y-worldCameraY-45)}
+}
+function resize(){let r=canvas.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=Math.max(320,Math.floor(r.width*dpr));canvas.height=Math.max(240,Math.floor(r.height*dpr));ctx.setTransform(canvas.width/960,0,0,canvas.height/540,0,0);ctx.imageSmoothingEnabled=false}
+function nearestMob(){return mobs.filter(m=>!m.dead&&Math.hypot(m.x-state.x,m.y-state.y)<95).sort((a,b)=>Math.hypot(a.x-state.x,a.y-state.y)-Math.hypot(b.x-state.x,b.y-state.y))[0]}
+function hitMob(mult=1){let m=nearestMob();if(!m){say("Dekati monster terlebih dahulu!");return}let damage=Math.max(1,Math.floor(atk()*mult+Math.random()*5));m.hp-=damage;m.hit=12;say(`${m.type.name}: -${damage} HP`);if(m.hp<=0){m.dead=true;state.kills++;state.xp+=m.type.xp;state.gold+=m.type.gold;state.inventory.push(Math.random()<.6?"potion":gear[Math.floor(Math.random()*gear.length)].id);say(`${m.type.name} dikalahkan! +${m.type.xp} EXP, +${m.type.gold} G`);if(state.questStep<3){state.questStep++;if(state.questStep===3){state.gold+=50;state.xp+=30;say("Quest selesai! Bonus +50 Gold dan +30 EXP.")}}levelCheck()}save()}
+function levelCheck(){while(state.xp>=expNeed()){state.xp-=expNeed();state.level++;state.points+=3;state.hp=maxHp();state.mp=maxMp();say("LEVEL UP! Level "+state.level+" · +3 poin atribut")}}
+function useSkill(){if(state.mp<12){say("MP tidak cukup!");return}if(state.skillTimer>0)return;state.mp-=12;state.skillTimer=1.1;state.attackTimer=.35;hitMob(2.1);save()}
+function attack(){if(state.attackTimer>0)return;state.attackTimer=.24;hitMob(1)}
+function jump(){interact()}
+function attack(){if(state.attackTimer>0)return;state.attackTimer=.24;hitMob(1)}
+function useSkill(){if(state.mp<12){say("MP tidak cukup!");return}if(state.skillTimer>0)return;state.mp-=12;state.skillTimer=1.1;state.attackTimer=.35;hitMob(2.1);save()}
+function interact(){
+ let n=npcList.find(n=>Math.hypot(n.x-state.x,n.y-state.y)<72);
+ if(n){if(n.role==="Blacksmith")openPanel("equipment");else if(n.role==="Healer"){state.hp=maxHp();state.mp=maxMp();say("Nara memulihkan HP dan MP kamu.");}else if(n.role==="Quest Keeper")openPanel("quests");else say(n.name+": "+n.q);return}
+ let m=nearestMob();if(m){attack();return}say("Dekati NPC atau monster untuk berinteraksi.")
+}
+function update(dt){
+ worldTime+=dt;state.attackTimer=Math.max(0,state.attackTimer-dt);state.skillTimer=Math.max(0,state.skillTimer-dt);state.damageFlash=Math.max(0,state.damageFlash-dt);
+ let dx=(keys.left?-1:0)+(keys.right?1:0),dy=(keys.up?-1:0)+(keys.down?1:0);
+ if(dx&&dy){dx*=.707;dy*=.707}
+ const speed=155;state.vx=dx*speed;state.vy=dy*speed;
+ if(dx)state.face=dx>0?1:-1;
+ state.x=Math.max(20,Math.min(WORLD_W-30,state.x+state.vx*dt));
+ state.y=Math.max(75,Math.min(465,state.y+state.vy*dt));
+ for(const m of mobs){
+   if(m.dead){m.respawn+=dt;if(m.respawn>18){let t=m.type;Object.assign(m,{dead:false,hp:m.maxHp,x:m.baseX,y:m.baseY,respawn:0,dir:Math.random()<.5?-1:1});}continue}
+   let ddx=state.x-m.x,ddy=state.y-m.y,dist=Math.hypot(ddx,ddy);
+   if(dist<210){m.aggro=true;if(dist>34){m.x+=ddx/dist*Math.min(42*dt,dist-30);m.y+=ddy/dist*Math.min(42*dt,dist-30)}}
+   else{m.aggro=false;m.x+=m.dir*12*dt;if(Math.abs(m.x-m.baseX)>60)m.dir*=-1;m.y=m.baseY+Math.sin(worldTime*1.5+m.baseX)*5}
+   if(dist<34&&Math.random()<dt*.7){let damage=Math.max(1,m.type.atk-def());state.hp-=damage;state.damageFlash=.18;if(state.hp<=0){state.hp=Math.ceil(maxHp()*.55);state.mp=Math.ceil(maxMp()*.5);state.x=Math.max(20,state.x-120);state.gold=Math.max(0,state.gold-5);say("Kamu tumbang dan kembali ke camp. -5 Gold.")}}
+ }
+ camera=Math.max(0,Math.min(WORLD_W-960,state.x-480));
+ worldCameraY=Math.max(0,Math.min(540,state.y-270));
+ if(online&&ws&&ws.readyState===1&&performance.now()-lastNet>80){lastNet=performance.now();ws.send(JSON.stringify({type:"move",player:{x:Math.round(state.x),y:Math.round(state.y),name:state.name,gender:state.gender,race:state.race,job:state.job,face:state.face,color:state.job==="Mage"?"#8255bd":"#5272bb"}}))}
+ state.hp=Math.max(0,Math.min(state.hp,maxHp()));state.mp=Math.max(0,Math.min(state.mp,maxMp()));
+ $("hpTxt").textContent=Math.floor(state.hp)+"/"+maxHp();$("hpBar").style.width=state.hp/maxHp()*100+"%";$("mpTxt").textContent=Math.floor(state.mp)+"/"+maxMp();$("mpBar").style.width=state.mp/maxMp()*100+"%";$("xpTxt").textContent=state.level+" · "+state.xp+"/"+expNeed()+" EXP";$("xpBar").style.width=state.xp/expNeed()*100+"%";$("nameChip").textContent=state.name+" · "+state.race;$("goldChip").textContent="◈ "+state.gold+" G";$("playerCount").textContent="Players: "+(online?Object.keys(remotePlayers).length+1:1);
+}
+function frame(t){let dt=Math.min(.033,(t-last)/1000||.016);last=t;update(dt);drawWorld();requestAnimationFrame(frame)}
+function openPanel(name){activePanel=name;$("drawer").classList.remove("hidden");const title={character:"KARAKTER & STATUS",inventory:"INVENTORY",equipment:"EQUIPMENT",quests:"QUEST JOURNAL",world:"DUNIA & PETA",online:"MULTIPLAYER ONLINE"}; $("drawerTitle").textContent=title[name]||"MENU";let body=$("drawerBody");
+ if(name==="character"){body.innerHTML=`<div class="two"><div><label class="muted">Nama karakter</label><input class="field" id="cName" maxlength="18" value="${esc(state.name)}"><label class="muted">Gender</label><select class="field" id="cGender"><option ${state.gender==="Cowok"?"selected":""}>Cowok</option><option ${state.gender==="Cewek"?"selected":""}>Cewek</option></select><label class="muted">Ras</label><select class="field" id="cRace">${Object.keys(races).map(r=>`<option ${state.race===r?"selected":""}>${r}</option>`).join("")}</select><label class="muted">Class</label><select class="field" id="cJob">${Object.keys(classes).map(r=>`<option ${state.job===r?"selected":""}>${r}</option>`).join("")}</select><button id="saveChar" class="active">Simpan karakter</button></div><div><div class="card"><strong>LEVEL ${state.level} · ${state.name}</strong><p>${races[state.race].desc}</p><p>${classes[state.job].desc}</p><p>HP ${maxHp()} · MP ${maxMp()}</p><p>ATK ${atk()} · DEF ${def()}</p><p>Gold ${state.gold} · Monster ${state.kills}</p><strong>Poin atribut: ${state.points}</strong>${["str","vit","agi","int"].map(k=>`<div class="row"><span>${k.toUpperCase()} · ${state.stats[k]}</span><button data-stat="${k}">+1</button></div>`).join("")}</div></div></div>`;$("saveChar").onclick=()=>{state.name=$("cName").value.trim()||"Wanderer";state.gender=$("cGender").value;state.race=$("cRace").value;state.job=$("cJob").value;state.hp=Math.min(state.hp,maxHp());state.mp=Math.min(state.mp,maxMp());save();openPanel("character");say("Karakter diperbarui!")};body.querySelectorAll("[data-stat]").forEach(b=>b.onclick=()=>{if(state.points<=0){say("Belum ada poin atribut!");return}state.stats[b.dataset.stat]++;state.points--;save();openPanel("character")});
+ }else if(name==="inventory"){body.innerHTML=`<div class="muted">Item dapat diperoleh dari monster. Pilih equipment untuk memasangnya.</div><div class="grid" style="margin-top:9px">${state.inventory.map((id,i)=>{if(id==="potion")return `<div class="card"><span>🧪</span><strong>Potion</strong><p>Pulihkan 45 HP.</p><button data-potion="${i}">Gunakan</button></div>`;let g=gear.find(x=>x.id===id);return g?`<div class="card"><span>${g.icon}</span><strong class="rarity-${g.rarity}">${g.name}</strong><p>${g.desc} · ${g.slot}</p><button data-equip="${i}">Pasang</button></div>`:""}).join("")||"Tas kosong."}</div>`;body.querySelectorAll("[data-potion]").forEach(b=>b.onclick=()=>{if(state.hp>=maxHp()){say("HP masih penuh");return}state.hp=Math.min(maxHp(),state.hp+45);state.inventory.splice(+b.dataset.potion,1);save();openPanel("inventory")});body.querySelectorAll("[data-equip]").forEach(b=>b.onclick=()=>{let i=+b.dataset.equip,id=state.inventory[i],g=gear.find(x=>x.id===id);if(!g)return;let old=state.equipment[g.slot];state.equipment[g.slot]=id;state.inventory.splice(i,1);if(old)state.inventory.push(old);save();openPanel("inventory");say(g.name+" dipasang")});
+ }else if(name==="equipment"){body.innerHTML=`<div class="grid">${["Weapon","Armor","Boots","Accessory"].map(slot=>{let g=gear.find(x=>x.id===state.equipment[slot]);return `<div class="card"><span class="muted">${slot}</span><strong>${g?g.icon+" "+g.name:"Slot kosong"}</strong><p>${g?g.desc:"Belum ada equipment."}</p>${g?`<button data-remove="${slot}">Lepas</button>`:""}</div>`}).join("")}</div><p class="muted">Equipment meningkatkan atribut karakter. Monster memiliki peluang menjatuhkan item.</p>`;body.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{let slot=b.dataset.remove,id=state.equipment[slot];if(id){state.inventory.push(id);state.equipment[slot]=null;save();openPanel("equipment")}}); 
+ }else if(name==="quests"){body.innerHTML=`<div class="card"><span class="pill">QUEST UTAMA</span><strong>Awal Perjalanan</strong><p>Bantu Mira mengamankan padang dengan mengalahkan 3 monster.</p><div class="bar xp"><span style="width:${Math.min(100,state.questStep/3*100)}%"></span></div><p>Progress ${Math.min(state.questStep,3)}/3 ${state.questStep>=3?"· SELESAI":" "}</p>${state.questStep>=3?'<span class="rarity-legendary">Reward sudah diklaim: 50 Gold + 30 EXP</span>':""}</div><div class="card"><span class="pill">QUEST SAMPINGAN</span><strong>Pemburu Harta</strong><p>Kumpulkan 150 Gold. Progress: ${Math.min(150,state.gold)}/150 G</p></div><div class="card"><strong>Petunjuk</strong><p>Gunakan joystick untuk bergerak. Dekati monster lalu tekan ATTACK atau SKILL. Dekati NPC dan tekan E atau tap area game untuk interaksi.</p></div>`;
+ }else if(name==="world"){body.innerHTML=`<div class="card"><strong>WORLD MAP · ECLIPSE CONTINENT</strong><p>Posisi: ${Math.round(state.x)} / ${WORLD_W}</p><div style="height:42px;background:#22203b;border:1px solid #665481;border-radius:6px;position:relative;margin:15px 0"><div style="position:absolute;top:0;bottom:0;left:${state.x/WORLD_W*100}%;width:4px;background:#ffe38b"></div>${zones.map(z=>`<div style="position:absolute;left:${z.x/WORLD_W*100}%;top:0;bottom:0;width:2px;background:#8f7ab5"></div>`).join("")}</div>${zones.map((z,i)=>`<div class="row"><div><strong>${z.name}</strong><div class="muted">${z.desc}</div></div><button data-travel="${i}">Pergi</button></div>`).join("")}<p class="footnote">Fast travel adalah fitur prototipe; berjalan kaki tetap dapat digunakan.</p></div>`;body.querySelectorAll("[data-travel]").forEach(b=>b.onclick=()=>{state.x=zones[+b.dataset.travel].x+40;state.y=300;camera=state.x-480;save();openPanel("world");say("Tiba di "+zones[+b.dataset.travel].name)});
+ }else if(name==="online"){body.innerHTML=`<div class="card"><strong>SERVER MULTIPLAYER</strong><p>Masukkan URL WebSocket server yang sudah kamu deploy (wss://... untuk server HTTPS). Server terpisah diperlukan agar pemain sungguhan bisa saling melihat.</p><label class="muted">WebSocket URL</label><input class="field" id="serverUrl" placeholder="wss://nama-server.onrender.com" value="${esc(localStorage.getItem("eclipseServerUrl")||"")}"><button id="connectBtn" class="active">Sambungkan</button> <button id="disconnectBtn">Putuskan</button><p class="muted" id="connectionInfo">Status: ${online?"Terhubung":"Belum terhubung"}</p></div><div class="card"><strong>CHAT DUNIA</strong><div class="log" id="chatLog">${chatLines.map(x=>`<div>${esc(x)}</div>`).join("")||"Belum ada pesan."}</div><div class="chatrow" style="margin-top:7px"><input id="chatInput" class="field" placeholder="Tulis pesan..." maxlength="140"><button id="sendChat">Kirim</button></div></div><p class="footnote">Jangan masukkan password atau data pribadi ke chat. Multiplayer akan aktif setelah server backend online tersedia.</p>`;$("connectBtn").onclick=()=>connect($("serverUrl").value.trim());$("disconnectBtn").onclick=()=>disconnect();$("sendChat").onclick=sendChat;$("chatInput").onkeydown=e=>{if(e.key==="Enter")sendChat()};
+ }
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function connect(url){if(!url){say("Isi URL server WebSocket dahulu.");return}try{localStorage.setItem("eclipseServerUrl",url);disconnect();ws=new WebSocket(url);$("netText").textContent="Menghubungkan ke server...";ws.onopen=()=>{online=true;playerId="p"+Math.random().toString(36).slice(2,9);ws.send(JSON.stringify({type:"join",player:{id:playerId,name:state.name,gender:state.gender,race:state.race,job:state.job,x:Math.round(state.x),y:Math.round(state.y)}}));$("netDot").classList.add("on");$("netText").textContent="Online · connected";if($("connectionInfo"))$("connectionInfo").textContent="Status: Terhubung";say("Terhubung ke dunia online!")};ws.onmessage=e=>{let d;try{d=JSON.parse(e.data)}catch{return}if(d.type==="welcome"){playerId=d.id;return}if(d.type==="state"){remotePlayers=d.players||{};if(playerId)delete remotePlayers[playerId]}if(d.type==="chat"){logChat((d.name||"Traveler")+": "+d.message);if($("chatLog"))$("chatLog").innerHTML=chatLines.map(x=>`<div>${esc(x)}</div>`).join("")}if(d.type==="system"){logChat("• "+d.message);if($("chatLog"))$("chatLog").innerHTML=chatLines.map(x=>`<div>${esc(x)}</div>`).join("")}};ws.onerror=()=>{if($("connectionInfo"))$("connectionInfo").textContent="Koneksi gagal. Periksa URL/server."};ws.onclose=()=>{online=false;remotePlayers={};$("netDot").classList.remove("on");$("netText").textContent="Offline · game tetap bisa dimainkan";if($("connectionInfo"))$("connectionInfo").textContent="Status: Terputus"};}catch(e){say("URL WebSocket tidak valid.")}}
+function disconnect(){if(ws){try{ws.close()}catch{}ws=null}online=false;remotePlayers={};$("netDot").classList.remove("on");$("netText").textContent="Offline mode · game tetap bisa dimainkan"}
+function sendChat(){let input=$("chatInput"),message=input&&input.value.trim();if(!message)return;if(!online||!ws||ws.readyState!==1){say("Sambungkan ke server online dahulu.");return}ws.send(JSON.stringify({type:"chat",message}));input.value=""}
+document.querySelectorAll("[data-key]").forEach(b=>{let k=b.dataset.key;const down=e=>{e.preventDefault();keys[k]=true},up=e=>{e.preventDefault();keys[k]=false};b.addEventListener("pointerdown",down);b.addEventListener("pointerup",up);b.addEventListener("pointerleave",up);b.addEventListener("pointercancel",up)});
+document.querySelectorAll("[data-action]").forEach(b=>b.addEventListener("pointerdown",e=>{e.preventDefault();if(b.dataset.action==="jump")jump();if(b.dataset.action==="interact")interact();if(b.dataset.action==="attack")attack();if(b.dataset.action==="skill")useSkill()}));
+window.addEventListener("keydown",e=>{if(["ArrowLeft","a","A"].includes(e.key))keys.left=true;if(["ArrowRight","d","D"].includes(e.key))keys.right=true;if(["ArrowUp","w","W"].includes(e.key))keys.up=true;if(["ArrowDown","s","S"].includes(e.key))keys.down=true;if(e.key===" "){e.preventDefault();interact()}if(e.key==="j"||e.key==="J")attack();if(e.key==="k"||e.key==="K")useSkill();if(e.key==="e"||e.key==="E")interact()});
+window.addEventListener("keyup",e=>{if(["ArrowLeft","a","A"].includes(e.key))keys.left=false;if(["ArrowRight","d","D"].includes(e.key))keys.right=false;if(["ArrowUp","w","W"].includes(e.key))keys.up=false;if(["ArrowDown","s","S"].includes(e.key))keys.down=false});
+canvas.addEventListener("pointerdown",e=>{if($("drawer").classList.contains("hidden")){const n=npcList.find(n=>Math.abs(n.x-state.x)<70);if(n)interact()}});
+document.querySelectorAll("[data-panel]").forEach(b=>b.onclick=()=>openPanel(b.dataset.panel));$("menuBtn").onclick=()=>openPanel("character");$("closeDrawer").onclick=()=>$("drawer").classList.add("hidden");
+window.addEventListener("resize",resize);
+load();initMobs();resize();setInterval(save,5000);requestAnimationFrame(frame);
+})();
+</script>
+</body></html>
